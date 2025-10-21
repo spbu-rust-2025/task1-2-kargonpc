@@ -1,7 +1,7 @@
 use std::io;
 
 fn main() {
-    let mut s = 0;
+    let mut s: i32 = 0;
     let mut found_invalid = false; // Флаг для отслеживания некорректных данных
     
     loop {
