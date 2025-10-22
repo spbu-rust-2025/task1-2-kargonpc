@@ -1,33 +1,24 @@
 use std::io;
 
 fn main() {
-    let mut s: i32 = 0;
-    let mut found_invalid = false; // Флаг для отслеживания некорректных данных
-    
+    let mut total_sum: i32 = 0;
+
     loop {
-        let mut l = String::new();
-        io::stdin().read_line(&mut l).unwrap();
-        let l = l.trim();
-        
-        if l == "-1" {
+        let mut input = String::new();
+        io::stdin().read_line(&mut input).unwrap();
+        input = input.trim().to_string();
+        if input == "-1" {
             break;
         }
-        
-        match l.parse::<i32>() {
-            Ok(n) if n > 0 => {
-                s += n;
+        match input.parse::<i32>() {
+            Ok(n) => {
+                total_sum += n;
             }
-            _ => {
-                // Запоминаем, что встретились некорректные данные
-                found_invalid = true;
+            Err(_) => {
+                println!("NaN");
+                return;
             }
         }
     }
-    
-    // Проверяем, были ли некорректные данные
-    if found_invalid {
-        println!("NaN");
-    } else {
-        println!("{}", s);
-    }
+    println!("{}", total_sum);
 }
